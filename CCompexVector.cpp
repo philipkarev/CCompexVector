@@ -98,32 +98,35 @@ compex CCV::operator*(const CCV &a) const { // scalar product
 
 CCV &CCV::operator++() { // prefix
 
-    compex *crr = new compex[len + 1];
+    compex *crr = new compex[this->len + 1];
     crr[0] = (this->brr)[0];
-    for (int i = 0; i < len; ++i)
+    for (int i = 0; i < this->len; ++i)
         crr[i + 1] = (this->brr)[i];
-    delete[] brr;
-    ++len;
-    this->brr = crr;
+    delete[] this->brr;
+    ++(this->len);
+    for (int i = 0; i < this->len; ++i)
+        this->brr[i] = crr[i];
+
     return *this;
 }
 
 
-/*CCV &CCV::operator--() { // prefix
+CCV &CCV::operator--() { // prefix
 
     if (len > 1) {
         compex *crr = new compex[len - 1];
-        for (int i = 0; i < len; ++i)
-            crr[i] = (this->brr)[i];
-        delete[] brr;
-        ++len;
-        this->brr = crr;
+        for (int i = 0; i < this->len - 1; ++i)
+            crr[i] = (this->brr)[i + 1];
+        delete[] this->brr;
+        --(this->len);
+        for (int i = 0; i < this->len; ++i)
+            this->brr[i] = crr[i];
         return *this;
     }
     else
         cout << "\nError: incorrect data. Decrement operation is unavailable" << endl;
     return *this;
-}*/
+}
 
 
 CCV CCV::operator++(int) { // postfix
