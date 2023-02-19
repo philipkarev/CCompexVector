@@ -36,7 +36,7 @@ compex compex::operator-(const compex &p) const {
 
 compex compex::operator*(const compex &p) const {
 
-    compex r(this -> x - this -> y * p.y, this -> x * p.y + this -> y * p.x);
+    compex r(this -> x * p.x - this -> y * p.y, this -> x * p.y + this -> y * p.x);
     return r;
 }
 
